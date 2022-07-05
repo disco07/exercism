@@ -4,7 +4,11 @@ import "time"
 
 // Schedule returns a time.Time from a string containing a date
 func Schedule(date string) time.Time {
-	panic("Please implement the Schedule function")
+	duration, err := time.Parse("2020-07-25 20:32:00", date)
+	if err != nil {
+		panic(err)
+	}
+	return duration
 }
 
 // HasPassed returns whether a date has passed
