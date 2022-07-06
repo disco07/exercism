@@ -1,7 +1,6 @@
 package booking
 
 import (
-	"fmt"
 	"time"
 )
 
@@ -41,8 +40,7 @@ func Description(date string) string {
 	if err != nil {
 		panic(err)
 	}
-	year, month, day := duration.Date()
-	return fmt.Sprintf("You have an appointment on %s, %s %v, %v, at %v:%v.", duration.Weekday(), month, day, year, duration.Hour(), duration.Minute())
+	return duration.Format("You have an appointment on Monday, January 2, 2006, at 15:04.")
 }
 
 // AnniversaryDate returns a Time with this year's anniversary
