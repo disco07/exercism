@@ -1,8 +1,14 @@
 package chessboard
 
-// Declare a type named Rank which stores if a square is occupied by a piece - this will be a slice of bools
+// Rank which stores if a square is occupied by a piece - this will be a slice of bools
+type Rank []struct {
+	bool
+}
 
-// Declare a type named Chessboard which contains a map of eight Ranks, accessed with keys from "A" to "H"
+// Chessboard which contains a map of eight Ranks, accessed with keys from "A" to "H"
+type Chessboard struct {
+	map[string]Rank
+}
 
 // CountInRank returns how many squares are occupied in the chessboard,
 // within the given rank
