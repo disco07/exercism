@@ -22,11 +22,5 @@ func (c Car) DisplayBattery() string {
 
 // CanFinish returns true if the car can finish the race; otherwise, return false.
 func (c Car) CanFinish(trackDistance int) bool {
-	var maxDist float64
-	maxDist = (float64(c.speed) / float64(c.batteryDrain)) * float64(c.battery)
-	if maxDist+float64(c.distance) >= float64(trackDistance) {
-		return true
-	} else {
-		return false
-	}
+	return (c.speed/c.batteryDrain)*c.battery >= trackDistance
 }
