@@ -17,7 +17,7 @@ func (c Car) DisplayDistance() string {
 
 // DisplayBattery return the battery percentage.
 func (c Car) DisplayBattery() string {
-	return fmt.Sprintf("Battery at %v%s", c.battery, "%")
+	return fmt.Sprintf("Battery at %v%%", c.battery)
 }
 
 // CanFinish returns true if the car can finish the race; otherwise, return false.
