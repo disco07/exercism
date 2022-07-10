@@ -22,5 +22,6 @@ func (c Car) DisplayBattery() string {
 
 // CanFinish returns true if the car can finish the race; otherwise, return false.
 func (c Car) CanFinish(trackDistance int) bool {
-	return (c.speed/c.batteryDrain)*c.battery >= trackDistance
+	fmt.Println((c.speed / c.batteryDrain) * c.battery)
+	return (float64(c.speed)/float64(c.batteryDrain))*float64(c.battery) >= float64(trackDistance)
 }
