@@ -59,10 +59,16 @@ func DescribeAnything(i interface{}) string {
 		f, _ := i.(FancyNumber)
 		return DescribeFancyNumberBox(f)
 	case int, float64:
-		return fmt.Sprintf("This is the number %.1f", i)
+		f, ok := i.(float64)
+		if !ok {
+			conv, _ := i.(int)
+			f = float64(conv)
+		}
+		return fmt.Sprintf("This is the number %.1f", f)
 	case string:
 		return "Return to sender"
 	default:
-		return "Return to sender"
+		f, _ := i.(FancyNumber)
+		return DescribeFancyNumberBox(f)
 	}
 }
