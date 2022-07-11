@@ -55,9 +55,9 @@ func DescribeAnything(i interface{}) string {
 		return "Return to sender"
 	}
 	switch i.(type) {
-	case FancyNumber:
-		f, _ := i.(FancyNumber)
-		return DescribeFancyNumberBox(f)
+	case NumberBox:
+		f, _ := i.(NumberBox)
+		return DescribeNumberBox(f)
 	case int, float64:
 		f, ok := i.(float64)
 		if !ok {
