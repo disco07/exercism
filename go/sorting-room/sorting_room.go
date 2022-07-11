@@ -51,9 +51,6 @@ func DescribeFancyNumberBox(fnb FancyNumberBox) string {
 
 // DescribeAnything should return a string describing whatever it contains.
 func DescribeAnything(i interface{}) string {
-	if fmt.Sprintf("%T", i) == "string" {
-		return "Return to sender"
-	}
 	switch i.(type) {
 	case NumberBox:
 		f, _ := i.(NumberBox)
