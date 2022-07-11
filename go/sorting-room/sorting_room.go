@@ -61,7 +61,7 @@ func DescribeAnything(i interface{}) string {
 			conv, _ := i.(int)
 			f = float64(conv)
 		}
-		return fmt.Sprintf("This is the number %.1f", f)
+		return DescribeNumber(f)
 	case string:
 		return "Return to sender"
 	default:
