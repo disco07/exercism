@@ -30,7 +30,7 @@ func Filter(in []Record, predicate func(Record) bool) []Record {
 // the day of the record is inside the period of day and false otherwise
 func ByDaysPeriod(p DaysPeriod) func(Record) bool {
 	return func(record Record) bool {
-		if record.Day >= p.To && record.Day <= p.From {
+		if record.Day >= p.From && record.Day <= p.To {
 			return true
 		}
 		return false
@@ -66,15 +66,9 @@ func TotalByPeriod(in []Record, p DaysPeriod) float64 {
 // An error must be returned only if there are no records in the list that belong
 // to the given category, regardless of period of time.
 func CategoryExpenses(in []Record, p DaysPeriod, c string) (float64, error) {
-	var count float64
-	for _, record := range in {
-		if ByCategory(c)(record) {
-			if ByDaysPeriod(p)(record) {
-				count += record.Amount
-			}
-		} else {
-			return 0, errors.New("false")
-		}
+	filteredByCategory := Filter(in, ByCategory(c))
+	if len(filteredByCategory) == 0 {
+		return 0, errors.New("unknown category entertainment")
 	}
-	return count, nil
+	return TotalByPeriod(filteredByCategory, p), nil
 }
