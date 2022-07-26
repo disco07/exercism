@@ -32,13 +32,34 @@ func New(s string) (*Matrix, error) {
 
 // Cols and Rows must return the results without affecting the matrix.
 func (m *Matrix) Cols() [][]int {
-	panic("Please implement the Cols function")
+	if len(*m) == 0 {
+		return [][]int{}
+	}
+	arr := make([][]int, 0)
+	for j := 0; j < len((*m)[0]); j++ {
+		r := make([]int, 0)
+		for i := 0; i < len(*m); i++ {
+			r = append(r, (*m)[i][j])
+		}
+		arr = append(arr, r)
+	}
+	return arr
 }
 
 func (m *Matrix) Rows() [][]int {
-	panic("Please implement the Rows function")
+	arr := make([][]int, len(*m))
+	for i := 0; i < len(*m); i++ {
+		r := make([]int, len((*m)[0]))
+		copy(r, (*m)[i])
+		arr[i] = r
+	}
+	return arr
 }
 
 func (m *Matrix) Set(row, col, val int) bool {
-	panic("Please implement the Set function")
+	if len(*m) == 0 || row >= len(*m) || col >= len((*m)[0]) || row < 0 || col < 0 {
+		return false
+	}
+	(*m)[row][col] = val
+	return true
 }
