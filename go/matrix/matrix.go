@@ -1,9 +1,33 @@
 package matrix
 
-// Define the Matrix type here.
+import (
+	"errors"
+	"strconv"
+	"strings"
+)
+
+// Matrix type here.
+type Matrix [][]int
 
 func New(s string) (*Matrix, error) {
-	panic("Please implement the New function")
+	rows := strings.Split(s, "\n")
+	m := make(Matrix, 0)
+	for i, row := range rows {
+		r := strings.Fields(row)
+		if i != 0 && len(r) != len(m[i-1]) {
+			return nil, errors.New("non even matrix")
+		}
+		arr := make([]int, 0)
+		for _, e := range r {
+			v, err := strconv.Atoi(e)
+			if err != nil {
+				return nil, errors.New("invalid integer")
+			}
+			arr = append(arr, v)
+		}
+		m = append(m, arr)
+	}
+	return &m, nil
 }
 
 // Cols and Rows must return the results without affecting the matrix.
