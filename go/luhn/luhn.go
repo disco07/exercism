@@ -1,7 +1,6 @@
 package luhn
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
 )
@@ -17,7 +16,7 @@ func doubling(id string) ([]int, bool) {
 	id = strings.ReplaceAll(id, " ", "")
 	var i2 int
 	var num []int
-	
+
 	for _, r := range []rune(id) {
 		n, err := strconv.Atoi(string(r))
 		if err != nil {
@@ -25,7 +24,6 @@ func doubling(id string) ([]int, bool) {
 		}
 		num = append(num, n)
 	}
-	fmt.Println(num)
 
 	if len(num) <= 1 {
 		return nil, false
