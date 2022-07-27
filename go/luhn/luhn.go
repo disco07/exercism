@@ -14,10 +14,10 @@ func Valid(id string) bool {
 }
 
 func doubling(id string) ([]int, bool) {
-	id = strings.TrimSpace(id)
+	id = strings.ReplaceAll(id, " ", "")
 	var i2 int
 	var num []int
-
+	
 	for _, r := range []rune(id) {
 		n, err := strconv.Atoi(string(r))
 		if err != nil {
@@ -41,7 +41,6 @@ func doubling(id string) ([]int, bool) {
 			num[i] = i2
 		}
 	}
-	fmt.Println(sliceReverse(num), num)
 	return sliceReverse(num), true
 }
 
