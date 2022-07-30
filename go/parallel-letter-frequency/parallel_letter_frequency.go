@@ -22,7 +22,6 @@ func Frequency(s string) FreqMap {
 func ConcurrentFrequency(l []string) FreqMap {
 	chanel := make(chan FreqMap)
 	m := make(FreqMap)
-	defer close(chanel)
 
 	wg.Add(len(l))
 
@@ -34,6 +33,7 @@ func ConcurrentFrequency(l []string) FreqMap {
 		}()
 	}
 	go func() {
+		defer close(chanel)
 		wg.Wait()
 	}()
 	for freq := range chanel {
